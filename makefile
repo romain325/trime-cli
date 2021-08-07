@@ -6,6 +6,8 @@ SRC=./
 
 OBJ=$(SRC)main.o \
     $(SRC)router.o \
+    $(SRC)cJSON.o \
+    $(SRC)act.o \
     $(SRC)tracker.o \
     $(SRC)utils.o 
 

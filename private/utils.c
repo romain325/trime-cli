@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "public/ansi_constants.h"
+#include <string.h>
+#include "../public/ansi_constants.h"
 
 unsigned long hash(char* str){
   unsigned long hash = 5381;
@@ -8,6 +9,14 @@ unsigned long hash(char* str){
   while((c = *str++))
     hash = ((hash << 5) + hash) + c;
   return hash;
+}
+
+char* getFilePath(){
+  char* home = getenv("HOME");
+  char* path = malloc(strlen(home) + 24);
+  strcat(path, home);
+  strcat(path, "/.config/trime_act.json");
+  return path;
 }
 
 void help(void){

@@ -1,6 +1,6 @@
-#include "public/router.h"
-#include "public/tracker.h"
-#include "public/utils.h"
+#include "../public/router.h"
+#include "../public/tracker.h"
+#include "../public/utils.h"
 
 #include <stdio.h>
 
