@@ -29,6 +29,10 @@ void help(void){
     printf("Track a specified action\n");
     printf(BWHT "stop <name>:\n" RESET);
     printf("Stop the tracking of a specified action\n");
-
+    printf(BWHT "tag <action> <act_name> <tag_name>: \n" RESET);
+    printf("Add/Remove a tag to a given activity if it exists\n");
+    printf(MAG "Actions: add, rm" RESET);
     exit(EXIT_SUCCESS);
 }
+
+

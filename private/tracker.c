@@ -55,6 +55,44 @@ void track(char* name){
 void stop_tracking(char* name){
   printf("Not tracking anymore %s", name);
   cJSON* json = getTrackedData();
-  endActivity(json, name);
+  if(endActivity(json, name)){
+    saveTrackedData(json);
+  }
+}
+
+void addTag(char* act_name, char* tag_name) {
+  printf("Adding tag %s to %s", tag_name, act_name);
+  cJSON* json = getTrackedData();
+
+  cJSON* elem = cJSON_GetObjectItem(json, act_name);
+  if(elem){
+    cJSON* arr = cJSON_GetObjectItem(elem, "act_tags");
+    if(!arr){
+      cJSON_AddArrayToObject(elem, "act_tags");
+    }
+    cJSON_AddItemToArray(arr, cJSON_CreateString(tag_name));
+    saveTrackedData(json);
+  }
+}
+
+void removeTag(char* act_name, char* tag_name){
+  printf("Removing tag %s from %s", tag_name, act_name);
+  cJSON* json = getTrackedData();
+
+  cJSON* elem = cJSON_GetObjectItem(json, act_name);
+  if(elem){
+    cJSON* arr = cJSON_GetObjectItem(elem, "act_tags");
+    if(arr){
+      const cJSON* elem = NULL;
+      int cnt = 0;
+      cJSON_ArrayForEach(elem, arr){
+        if(strcmp(tag_name, elem->valuestring) == 0){
+          cJSON_DeleteItemFromArray(arr, cnt);
+        }
+        cnt++;
+      }
+    }
+  }
+
   saveTrackedData(json);
 }

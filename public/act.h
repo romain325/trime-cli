@@ -6,6 +6,6 @@
 // start a new activity
 void addNewActivity(cJSON* json, char* name);
 // end an activity if any is running
-void endActivity(cJSON* json, char* name);
+char endActivity(cJSON* json, char* name);
 
 #endif
