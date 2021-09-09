@@ -66,11 +66,15 @@ void addTag(char* act_name, char* tag_name) {
 
   cJSON* elem = cJSON_GetObjectItem(json, act_name);
   if(elem){
-    cJSON* arr = cJSON_GetObjectItem(elem, "act_tags");
-    if(!arr){
-      cJSON_AddArrayToObject(elem, "act_tags");
+    cJSON* arr_str = cJSON_GetObjectItem(elem, "act_tags");
+    trim(arr_str->valuestring);
+    if(strcmp(arr_str->valuestring, "") == 0){
+      arr_str->valuestring = tag_name;
+    }else{
+      char new_str[2056] = "";
+      snprintf(new_str, sizeof(new_str), "%s,%s", arr_str->valuestring, tag_name);
+      arr_str->valuestring = new_str;
     }
-    cJSON_AddItemToArray(arr, cJSON_CreateString(tag_name));
     saveTrackedData(json);
   }
 }
@@ -83,14 +87,22 @@ void removeTag(char* act_name, char* tag_name){
   if(elem){
     cJSON* arr = cJSON_GetObjectItem(elem, "act_tags");
     if(arr){
-      const cJSON* elem = NULL;
+      /*const cJSON* elem = NULL;
       int cnt = 0;
       cJSON_ArrayForEach(elem, arr){
         if(strcmp(tag_name, elem->valuestring) == 0){
           cJSON_DeleteItemFromArray(arr, cnt);
         }
         cnt++;
-      }
+      }*/
+      char with_coma_b[64] = "";
+      char with_coma_a[64] = "";
+      snprintf(with_coma_b, sizeof(with_coma_b), ",%s",tag_name);
+      snprintf(with_coma_a, sizeof(with_coma_a), "%s,",tag_name);
+
+      strremove(arr->valuestring, with_coma_b);
+      strremove(arr->valuestring, with_coma_a);
+      strremove(arr->valuestring, tag_name);
     }
   }
 

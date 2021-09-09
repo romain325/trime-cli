@@ -7,7 +7,7 @@ void addNewActivity(cJSON* json, char* name){
     //create a new activity
     act = cJSON_CreateObject();
     //precise an empty act type & empty acts
-    cJSON_AddArrayToObject(act, "act_tags");
+    cJSON_AddStringToObject(act, "act_tags", "");
     cJSON_AddArrayToObject(act, "acts");
 
     // add to the final object

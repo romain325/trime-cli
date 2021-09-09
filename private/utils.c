@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "../public/ansi_constants.h"
 
 unsigned long hash(char* str){
@@ -35,4 +36,26 @@ void help(void){
     exit(EXIT_SUCCESS);
 }
 
+void trim(char * s) {
+    char * p = s;
+    int l = strlen(p);
 
+    while(isspace(p[l - 1])) p[--l] = 0;
+    while(* p && isspace(* p)) ++p, --l;
+
+    memmove(s, p, l + 1);
+}
+
+char *strremove(char *str, const char *sub) {
+    char *p, *q, *r;
+    if (*sub && (q = r = strstr(str, sub)) != NULL) {
+        size_t len = strlen(sub);
+        while ((r = strstr(p = r + len, sub)) != NULL) {
+            while (p < r)
+                *q++ = *p++;
+        }
+        while ((*q++ = *p++) != '\0')
+            continue;
+    }
+    return str;
+}

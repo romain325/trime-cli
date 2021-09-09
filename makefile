@@ -1,6 +1,6 @@
 CC=gcc
 
-CFLAGS= -Wall -g -I ./
+CFLAGS= -Wall -lcurl -g -I ./
 
 SRC=./
 
@@ -9,10 +9,11 @@ OBJ=$(SRC)main.o \
     $(SRC)cJSON.o \
     $(SRC)act.o \
     $(SRC)tracker.o \
+    $(SRC)sync.o \
     $(SRC)utils.o 
 
 out : $(OBJ)
-	$(CC) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
 $(SRC)%.o: private/$(SRC)%.c public/$(SRC)%.h
 	$(CC) $(CFLAGS) -c $< -o $@
