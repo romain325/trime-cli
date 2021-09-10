@@ -123,7 +123,9 @@ void sync_act(void){
 
   cJSON_Delete(json);
 
-  // TODO REMOVE FILE
+  char* filename = getFilePath();
+  remove(filename);
+  free(filename);
 }
 
 void sync_tag(void){

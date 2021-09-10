@@ -13,10 +13,8 @@ unsigned long hash(char* str){
 }
 
 char* getFilePath(){
-  char* home = getenv("HOME");
-  char* path = malloc(strlen(home) + 24);
-  strcat(path, home);
-  strcat(path, "/.config/trime_act.json");
+  char* path = (char*) malloc(2048 * sizeof(char));
+  sprintf(path, "%s/.config/trime_act.json", getenv("HOME"));
   return path;
 }
 
