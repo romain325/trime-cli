@@ -13,14 +13,14 @@ OBJ=$(SRC)main.o \
     $(SRC)sync.o \
     $(SRC)utils.o 
 
-out : $(OBJ)
+trime : $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@ $(LNK_FLAGS)
 
 $(SRC)%.o: private/$(SRC)%.c public/$(SRC)%.h
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
-all: out
+all: trime
 
 clean:
-	rm -rf $(SRC)*.o out
+	rm -rf $(SRC)*.o trime
 	clear

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "../public/utils.h"
 #include "../public/ansi_constants.h"
 
 unsigned long hash(char* str){
@@ -20,6 +21,7 @@ char* getFilePath(){
 
 void help(void){
     printf(BMAG "Help\n" RESET);
+    printf("Version " VERSION "\n");
     printf(MAG "trime " RESET);
     printf("is a time tracking tool designed to help you track your activities\n");
     printf("The CLI allow you too track time from your command line quickly and then send the archived data to a remote db if wanted\n");
@@ -30,7 +32,10 @@ void help(void){
     printf("Stop the tracking of a specified action\n");
     printf(BWHT "tag <action> <act_name> <tag_name>: \n" RESET);
     printf("Add/Remove a tag to a given activity if it exists\n");
-    printf(MAG "Actions: add, rm" RESET);
+    printf(MAG "Actions: add, rm\n" RESET);
+    printf(BWHT "sync <action>: \n" RESET);
+    printf("Sync your tags/actions or both\n");
+    printf(MAG "Actions: tag, act, both" RESET);
     exit(EXIT_SUCCESS);
 }
 
