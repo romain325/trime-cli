@@ -13,7 +13,7 @@ void send_patch_req(char* act_name, char* patched){
 
   if((req = curl_easy_init() )){
     char url[256] = "";
-    snprintf(url, sizeof(url), "%s%s", "https://firestore.googleapis.com/v1/projects/trime-tracker/databases/(default)/documents/test/", act_name);
+    snprintf(url, sizeof(url), "%s%s", "https://firestore.googleapis.com/v1/projects/trime-tracker/databases/(default)/documents/trime/", act_name);
 
     curl_easy_setopt(req, CURLOPT_URL, url);
     // verbose, debug only
@@ -67,7 +67,7 @@ cJSON* getPreviousAct(char* act_name){
 
   if((req = curl_easy_init() )){
     char url[256] = "";
-    snprintf(url, sizeof(url), "%s%s", "https://firestore.googleapis.com/v1/projects/trime-tracker/databases/(default)/documents/test/", act_name);
+    snprintf(url, sizeof(url), "%s%s", "https://firestore.googleapis.com/v1/projects/trime-tracker/databases/(default)/documents/trime/", act_name);
 
     curl_easy_setopt(req, CURLOPT_URL, url);
     curl_easy_setopt(req, CURLOPT_WRITEFUNCTION, write_func);
